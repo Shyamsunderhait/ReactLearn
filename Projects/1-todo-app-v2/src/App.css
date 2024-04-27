@@ -1,0 +1,11 @@
+input {
+  width: 100%;
+}
+
+.sh-row {
+  margin: 10px 5px;
+}
+
+.sh-button {
+  min-width: 80px;
+}

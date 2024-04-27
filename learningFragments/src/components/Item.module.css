@@ -1,0 +1,13 @@
+.sh-item {
+  background-color: khaki;
+}
+.sh-span {
+  font-weight: 500;
+  color: rgb(16, 91, 45);
+}
+
+.button {
+  float: right;
+  background-color: rgb(111, 41, 196);
+  color: white;
+}
