@@ -3,4 +3,7 @@
   width: 200px;
   border-radius: 5px;
   height: 400px;
+  position: relative;
+  left: 40%;
+  top: 100px;
 }
