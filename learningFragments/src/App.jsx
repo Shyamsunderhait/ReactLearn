@@ -7,32 +7,32 @@ import Container from "./components/Container";
 import FoodInput from "./components/FoodInput";
 
 function App() {
-  let foodItems = [
-    "IndieMint",
-    "Green Vegetable",
-    "Milk",
-    "MyProtien",
-    "Salad",
-  ];
-  let textStateArr = useState("Food item entered by user");
-  let textToShow = textStateArr[0];
-  let setTextState = textStateArr[1];
-  console.log(`Current Value of textState: ${textToShow}`);
-  const handleOnChnage = (event) => {
-    console.log(event.target.value);
-    setTextState(event.target.value);
+  // let textStateArr = useState("Food item entered by user");
+  // let textToShow = textStateArr[0];
+  // let setTextState = textStateArr[1];
+  // let [textToShow, setTextState] = useState("Food item entered by user");
+  let [foodItems, setFoodItems] = useState([]);
+  // console.log(`Current Value of textState: ${textToShow}`);
+  const onkeyDown = (event) => {
+    // setTextState(event.target.value);
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      event.target.value = "";
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems);
+      console.log(`Food value entered is ${newFoodItem}`);
+    }
   };
   return (
     <>
       <Container>
         <h1 className="foodHeading">Healthy Food</h1>
 
-        <ErrorMsg items={foodItems}></ErrorMsg>
-
-        <FoodInput handleOnChnage={handleOnChnage}></FoodInput>
-        <p>{textToShow}</p>
+        <FoodInput handleKeyDown={onkeyDown}></FoodInput>
+        {/* <p>{textToShow}</p> */}
 
         <FoodItems items={foodItems}></FoodItems>
+        <ErrorMsg items={foodItems}></ErrorMsg>
       </Container>
     </>
   );
