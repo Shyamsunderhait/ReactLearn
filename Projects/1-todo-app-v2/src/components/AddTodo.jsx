@@ -13,6 +13,8 @@ function AddTodo({ onNewItem }) {
 
   const handleAddBtn = () => {
     onNewItem(todoName, dueDate);
+    setDueDate("");
+    setTodoName("");
   };
 
   return (
@@ -21,13 +23,14 @@ function AddTodo({ onNewItem }) {
         <div className="col-6">
           <input
             type="text"
+            value={todoName}
             placeholder="Enter task"
             onChange={handleNameChange}
           />
         </div>
 
         <div className="col-4">
-          <input type="date" onChange={handleDateChange} />
+          <input type="date" value={dueDate} onChange={handleDateChange} />
         </div>
         <div className="col-2">
           <button
