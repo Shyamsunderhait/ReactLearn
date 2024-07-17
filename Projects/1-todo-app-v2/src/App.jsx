@@ -13,14 +13,14 @@ function App() {
 
   const handleNewItem = (itemName, itemDueDate) => {
     console.log(`new Item added ${itemName} ${itemDueDate}`);
-    const newTodoItems = [
-      ...todoItems,
+
+    setTodoItems((currentValue) => [
+      ...currentValue,
       {
         name: itemName,
-        dueDate: itemDueDate,
+        date: itemDueDate,
       },
-    ];
-    setTodoItems(newTodoItems);
+    ]);
   };
 
   const handleDeleteClick = (todoItemName) => {
@@ -38,7 +38,7 @@ function App() {
         <AppName />
 
         <AddTodo onNewItem={handleNewItem} />
-        {todoItems.length === 0 && <WelcomMessage></WelcomMessage>}
+        <WelcomMessage todoItems={todoItems}></WelcomMessage>
         <TodoItems
           todoItems={todoItems}
           onDeleteClick={handleDeleteClick}

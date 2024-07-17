@@ -1,47 +1,36 @@
-import { useState } from "react";
+import { useRef } from "react";
+import { MdAddBox } from "react-icons/md";
 
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState();
-  const [dueDate, setDueDate] = useState();
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
-  const handleNameChange = () => {
-    setTodoName(event.target.value);
-  };
-  const handleDateChange = () => {
-    setDueDate(event.target.value);
-  };
+  const handleAddBtn = (event) => {
+    event.preventDefault();
 
-  const handleAddBtn = () => {
+    const todoName = todoNameElement.current.value;
+    const dueDate = todoDateElement.current.value;
+    todoNameElement.current.value = "";
+    todoDateElement.current.value = "";
     onNewItem(todoName, dueDate);
-    setDueDate("");
-    setTodoName("");
   };
 
   return (
     <div className="container text-center">
-      <div className="row sh-row">
+      <form className="row sh-row" onSubmit={handleAddBtn}>
         <div className="col-6">
-          <input
-            type="text"
-            value={todoName}
-            placeholder="Enter task"
-            onChange={handleNameChange}
-          />
+          <input type="text" ref={todoDateElement} placeholder="Enter task" />
         </div>
 
         <div className="col-4">
-          <input type="date" value={dueDate} onChange={handleDateChange} />
+          <input type="date" ref={todoNameElement} />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success sh-button"
-            onClick={handleAddBtn}
-          >
-            Add
+          <button onSubmit={handleAddBtn} className="btn btn-success sh-button">
+            <MdAddBox />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
