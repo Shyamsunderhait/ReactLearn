@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { MdAddBox } from "react-icons/md";
+import { TodoItemsContext } from "../store/Todo-items-store";
 
-function AddTodo({ onNewItem }) {
+function AddTodo() {
+  const { addNewItem } = useContext(TodoItemsContext);
   const todoNameElement = useRef();
   const todoDateElement = useRef();
 
@@ -12,18 +14,18 @@ function AddTodo({ onNewItem }) {
     const dueDate = todoDateElement.current.value;
     todoNameElement.current.value = "";
     todoDateElement.current.value = "";
-    onNewItem(todoName, dueDate);
+    addNewItem(todoName, dueDate);
   };
 
   return (
     <div className="container text-center">
       <form className="row sh-row" onSubmit={handleAddBtn}>
         <div className="col-6">
-          <input type="text" ref={todoDateElement} placeholder="Enter task" />
+          <input type="text" ref={todoNameElement} placeholder="Enter task" />
         </div>
 
         <div className="col-4">
-          <input type="date" ref={todoNameElement} />
+          <input type="date" ref={todoDateElement} />
         </div>
         <div className="col-2">
           <button onSubmit={handleAddBtn} className="btn btn-success sh-button">
